@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Add your product here</h1>
+    <div>
+      <%if(errors){%> 
+        <%errors.split(',').forEach(el => {%>
+      <div style="color: red"><%=el%></div>
+      <%})%> <%}%>
+    </div>
+    <div>
+      <form action="/products/create" method="post">
+      <label>Name</label>
+      <br />
+      <input name="name" type="text" />
+    </div>
+    <br />
+    <div>
+      <label>Image Url</label>
+      <br />
+      <input name="image" type="text" />
+    </div>
+    <br />
+    <div>
+      <label>Description</label>
+      <br />
+      <textarea name="description" type="text" autocomplete="off"></textarea>
+    </div>
+    <br />
+    <div>
+      <label>Price</label>
+      <br />
+      <input name="price" type="number" />
+    </div>
+    <br />
+    <div>
+      <button type="submit">
+        Save
+      </button>
+    </div>
+  </form>
+  </body>
+</html>
