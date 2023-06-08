@@ -25,42 +25,27 @@ class orderController {
         console.log("dsn");
         const { id } = req.session.userId
         const { productId } = req.params
-        // User.findByPk(id, {
-        //     include: Profile
-        // })
-        //     .then(dataUser => {
-        //         // console.log(dataUser);
-        //         const address = dataUser.Profile.address
-        //         return Order.create({
-        //             orderDate: new Date(),
-        //             totalOrder: 1,
-        //             UserId: id,
-        //             address,
-        //             ProductId: productId
-        //         })
-        //     })
-        //     .then((data) => {
-        //         res.redirect('/')
-        //     })
-        //     .catch(err => {
-        //         res.send(err)
-        //     })
-
-        Order.create({
-            orderDate: new Date(),
-            totalOrder: 1,
-            UserId: id,
-            address: 'abc',
-            ProductId: productId
+        User.findByPk(id, {
+            include: Profile
         })
-
+            .then(dataUser => {
+                // console.log(dataUser);
+                const address = dataUser.Profile.address
+                return Order.create({
+                    orderDate: new Date(),
+                    totalOrder: 1,
+                    UserId: id,
+                    address,
+                    ProductId: productId
+                })
+            })
             .then((data) => {
                 res.redirect('/')
             })
             .catch(err => {
-                console.log(err);
                 res.send(err)
             })
+
 
     }
 

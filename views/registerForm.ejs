@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Login Page</title>
+    <title>Register Page</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
@@ -64,32 +64,14 @@
       .text-center {
         text-align: center;
       }
-
-      .text-center p {
-        margin-bottom: 0;
-      }
-
-      .text-center a {
-        color: #ff7171;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .text-center a:hover {
-        color: #ff5252;
-      }
     </style>
   </head>
   <body>
     <div class="card">
       <div class="card-body">
-        <h1 class="card-title">Login</h1>
+        <h1 class="card-title">Register</h1>
 
-        <% if(error) { %>
-        <p class="text-danger"><%= error %></p>
-        <% } %>
-
-        <form action="/login" method="post">
+        <form action="/register/addUser" method="post">
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input
@@ -97,11 +79,18 @@
               class="form-control"
               id="username"
               name="username"
+              required
             />
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" />
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              required
+            />
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
@@ -110,13 +99,11 @@
               class="form-control"
               id="password"
               name="password"
+              required
             />
           </div>
-          <div class="mb-3 text-center">
-            <p>Belum punya akun? <a href="/register">Register</a></p>
-          </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary">Register</button>
           </div>
         </form>
       </div>
