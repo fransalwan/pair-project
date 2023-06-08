@@ -12,22 +12,14 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      image: {
+        type: Sequelize.STRING
+      },
       description: {
         type: Sequelize.TEXT
       },
       price: {
         type: Sequelize.INTEGER
-      },
-      CategoryId: {
-        type: Sequelize.INTEGER,
-
-        references: {
-          model: 'Categories',
-          key: 'id'
-        },
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
-
       },
       createdAt: {
         allowNull: false,
