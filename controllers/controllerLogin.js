@@ -35,6 +35,9 @@ class Controller {
             req.session.userId = user.id;
             req.session.role = user.role; // set session di controller login
             console.log(req.session.role);
+            console.log(req.session.userId, 'ini user id');
+            console.log(user.id, 'ini user.id');
+
             return res.redirect("/product");
           } else {
             const error = "invalid username/password";

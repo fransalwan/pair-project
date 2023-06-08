@@ -22,7 +22,7 @@ class productController {
         })
             .then(data => {
                 // console.log(data);
-                res.render('product', { data, formatCurrency })
+                res.render('product', { data, formatCurrency, role: req.session.role })
             })
             .catch(err => {
                 res.send(err)
@@ -59,12 +59,12 @@ class productController {
             price
         })
             .then(data => {
-                res.redirect('/products')
+                res.redirect('/product')
             })
             .catch(err => {
                 if (err.name === "SequelizeValidationError") {
                     let errors = err.errors.map(el => el.message)
-                    res.redirect(`/products/create?errors=${errors}`)
+                    res.redirect(`/product/create?errors=${errors}`)
                 } else {
                     res.send(err)
                 }
@@ -73,7 +73,7 @@ class productController {
     }
     static formEditProduct(req, res) {
         const { id } = req.params
-        // console.log(req.params);
+        console.log(req.params);
         Product.findByPk(id)
             .then(data => {
                 // console.log(data);
@@ -101,7 +101,7 @@ class productController {
             where: { id }
         })
             .then(data => {
-                res.redirect('/products')
+                res.redirect('/product')
             })
             .catch(err => {
                 res.send(err)
@@ -115,7 +115,7 @@ class productController {
             where: { id }
         })
             .then(data => {
-                res.redirect('/products')
+                res.redirect('/product')
             })
             .catch(err => {
                 res.send(err)

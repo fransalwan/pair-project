@@ -13,8 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Order.belongsTo(models.User, { foreignKey: 'UserId' })
       Order.belongsTo(models.Product, { foreignKey: 'ProductId' })
-
-
+    }
+    get Date() {
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      return this.orderDate.toLocaleDateString("id-ID", options);
     }
   }
   Order.init({
