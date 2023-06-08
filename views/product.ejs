@@ -12,59 +12,105 @@
       crossorigin="anonymous"
     />
   </head>
+  <style>
+    .btn-aesthetic {
+      background-color: #ff7171;
+      border-color: #ff7171;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      margin: 0 auto; /* Center the button horizontally */
+      text-align: center; /* Center the text within the button */
+    }
+
+    .btn-aesthetic:hover {
+      background-color: #ff5252;
+      border-color: #ff5252;
+    }
+  </style>
+
   <body>
     <!-- navbar -->
 
     <%- include('navbar.ejs'); %>
     <!-- end navbar -->
     <br />
-    <% if (role === 'admin') { %>
-    <!-- Display admin-specific content -->
-    <button><a href="/product/create">Create</a></button>
-    <% } %>
 
     <div class="container">
+      <% if (role === 'admin') { %>
+      <!-- Display admin-specific content -->
+      <a href="/product/create" class="btn btn-primary btn-aesthetic">Create</a>
+
+      <% } %>
+      <br />
+      <br />
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <% data.forEach((el)=> { %>
         <div class="col">
           <div class="card h-100">
-            <img
-              src="<%= el.image %>"
-              class="card-img-top img-fluid"
-              style="max-width: 60%; height: auto"
-              alt="Product Image"
-            />
-
-            <div class="card-body">
-              <h5 class="card-title"><%= el.name %></h5>
-              <p class="card-text"><%= el.description %></p>
-              <p class="card-text"><%= formatCurrency(el.price) %></p>
+            <div class="col d-flex justify-content-center">
+              <img
+                src="<%= el.image %>"
+                class="card-img-top img-fluid"
+                style="max-width: 100%; height: auto"
+                alt="Product Image"
+              />
             </div>
+            <div>
+              <div class="card-body">
+                <h5 class="card-title"><%= el.name %></h5>
+                <p class="card-text"><%= el.description %></p>
+                <p class="card-text"><%= formatCurrency(el.price) %></p>
+              </div>
+            </div>
+
             <div class="card-footer">
               <div class="d-grid gap-2">
                 <% if (role === 'admin') { %>
                 <!-- Display admin-specific content -->
-                <a href="/product/<%= el.id %>/edit" class="btn btn-info"
+                <a
+                  href="/product/<%= el.id %>/edit"
+                  class="btn btn-info"
+                  style="background-color: rgb(249, 169, 89)"
                   >Edit</a
                 >
-                <a href="/product/<%= el.id %>/delete" class="btn btn-danger"
+
+                <a
+                  href="/product/<%= el.id %>/delete"
+                  class="btn btn-info"
+                  style="background-color: rgb(239, 167, 167)"
                   >Delete</a
                 >
 
-                <a href="/product/<%= el.id %>" class="btn btn-secondary"
+                <a
+                  href="/product/<%= el.id %>"
+                  class="btn btn-info"
+                  style="background-color: rgb(120, 233, 250)"
                   >Detail</a
                 >
+
                 <% } else { %>
                 <!-- Display content for other roles or when role is not defined -->
-                <button type="submit">
-                  <a href="/orders/po/<%= el.id %>" class="btn btn-primary"
-                    >Pre-Order</a
-                  >
-                </button>
+                <a
+                  href="/orders/po/<%= el.id %>"
+                  class="btn btn-primary"
+                  style="
+                    background-color: #ff7171;
+                    border-color: #ff7171;
+                    color: #fff;
+                  "
+                  >Pre-Order</a
+                >
 
-                <a href="/product/<%= el.id %>" class="btn btn-secondary"
+                <a
+                  href="/product/<%= el.id %>"
+                  class="btn btn-secondary"
+                  style="background-color: rgb(120, 233, 250)"
                   >Detail</a
                 >
+
                 <% } %>
               </div>
             </div>

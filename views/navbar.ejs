@@ -5,15 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .navbar-collapse {
+        justify-content: flex-end; /* Align the items to the right */
+      }
+      .navbar-nav {
+        align-items: center; /* Vertically center the items */
+      }
+      .navbar-form {
+        display: flex; /* Display the form items in a row */
+        align-items: center; /* Vertically center the form items */
+      }
+      .navbar-form input[type="text"],
+      .navbar-form button[type="submit"],
+      .navbar-form .btn-danger {
+        margin-left: 10px; /* Add some spacing between the form items */
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/product">Style Avenue</a>
+      <a
+        class="navbar-brand"
+        href="/product"
+        style="
+          font-family: 'Arial', sans-serif;
+          font-size: 24px;
+          font-weight: bold;
+          color: black;
+          text-decoration: none;
+        "
+        >Avenue.Co</a
+      >
+
       <button
         class="navbar-toggler"
         type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -21,20 +50,21 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
             <a class="nav-link" href="/orders">Pre-Order</a>
           </li>
         </ul>
-        <form action="/product" method="get">
+        <form action="/product" method="get" class="d-flex">
           <input
+            class="form-control me-2"
             type="text"
             name="search"
             autocomplete="off"
             placeholder="Search here..."
           />
-          <button type="submit">Search</button>
-          <a href="/logout">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+          <a href="/logout" class="ms-3">
             <button type="button" class="btn btn-danger">Logout</button>
           </a>
         </form>
