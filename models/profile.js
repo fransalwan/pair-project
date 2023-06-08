@@ -15,13 +15,65 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Profile.init({
-    fullName: DataTypes.STRING,
-    address: DataTypes.TEXT,
-    phoneNumber: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
+    fullName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Please input your fullName"
+        },
+        notEmpty: {
+          msg: "Please input your fullName"
+        }
+      }
+    },
+    address: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Please input your address"
+        },
+        notEmpty: {
+          msg: "Please input your address"
+        }
+      }
+    },
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Please input your address"
+        },
+        notEmpty: {
+          msg: "Please input your address"
+        },
+        notStartingWithZero(value) {
+          if (value.startsWith('0')) {
+            throw new Error('Phone number cannot start with 0')
+          }
+        }
+      }
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Please input your User"
+        },
+        notEmpty: {
+          msg: "Please input your User"
+        },
+
+      }
+    }
   }, {
     sequelize,
     modelName: 'Profile',
   });
   return Profile;
 };
+
+
