@@ -43,6 +43,7 @@
           <th>Order Date</th>
           <th>Total Order</th>
           <th>Address</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -51,6 +52,9 @@
           <td><%= el.Date %></td>
           <td><%= el.totalOrder %></td>
           <td><%= el.address %></td>
+          <td>
+            <button><a href="/orders/<%=el.id%>/delete">Delete</a></button>
+          </td>
         </tr>
         <% }) %>
       </tbody>

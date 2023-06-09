@@ -6,7 +6,7 @@ class orderController {
         const userId = req.session.userId
         // console.log(req.session.userId, 'ini dari order controller')
 
-        // console.log(req.session.userId, 'ini user id');
+        console.log(req.session.userId, 'ini user id');
         Order.findAll({
             where: {
                 UserId: userId
@@ -23,24 +23,24 @@ class orderController {
 
     static getOrderById(req, res) { //kirimny userId
         console.log("dsn");
-        const { id } = req.session.userId
+        const id = req.session.userId
+        // console.log(req.session);
         const { productId } = req.params
         User.findByPk(id, {
             include: Profile
         })
             .then(dataUser => {
-                // console.log(dataUser);
                 const address = dataUser.Profile.address
                 return Order.create({
                     orderDate: new Date(),
                     totalOrder: 1,
-                    UserId: id,
+                    UserId: dataUser.id,
                     address,
                     ProductId: productId
                 })
             })
             .then((data) => {
-                res.redirect('/')
+                res.redirect('/orders')
             })
             .catch(err => {
                 res.send(err)
@@ -57,7 +57,10 @@ class orderController {
             }
         })
             .then(data => {
-                res.redirect('')
+                res.redirect('/orders')
+            })
+            .catch(err => {
+                res.send(err)
             })
     }
 

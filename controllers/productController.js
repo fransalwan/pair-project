@@ -1,7 +1,7 @@
 const { Product } = require('../models/index')
 const { Op } = require('sequelize')
 const { formatCurrency } = require('../helpers/helper')
-
+const greeting = require('greeting')
 
 class productController {
 
@@ -21,8 +21,8 @@ class productController {
             where
         })
             .then(data => {
-                // console.log(data);
-                res.render('product', { data, formatCurrency, role: req.session.role })
+                console.log(data);
+                res.render('product', { data, formatCurrency, role: req.session.role, greeting })
             })
             .catch(err => {
                 res.send(err)
